@@ -1,10 +1,17 @@
 @import "reset";
 @import "variables";
 @import "typography";
+
+// Quiz.html page related
+
 @import "general";
 @import "table";
 @import "progress";
 @import "question-container";
+
+
+// Index page related
+@import "index";
 
 
 .error-next{

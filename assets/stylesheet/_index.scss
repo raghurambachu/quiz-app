@@ -1,0 +1,47 @@
+.quiz-card-holder{
+    padding: 2rem 0;
+    font-family: $font-family;
+    justify-content: space-evenly;
+    .quiz-card{
+        box-shadow:3px 2px 12px -1px rgba(148,143,148,1);
+        background: whitesmoke;
+        border-radius: 0.4rem;
+        width: 45%;
+        h3{
+            font-size: 1.5rem;
+        }
+       .quiz-image-holder{
+           width: 30%;
+           font-size: 0;
+           height: 100%;
+       }
+       img{
+           object-fit: cover;
+           width: 100%;
+           
+       }
+        .quiz-info-content{
+            flex-direction: column;
+            width: 70%;
+            align-items: flex-start;
+            padding: 1em;
+        }
+        .btn-take-quiz{
+            background: wheat;
+            padding: 0.4em 0.6em;
+            align-self: flex-end;;
+        }
+        
+    }
+    .quiz-category{
+        margin: 2em 0;
+        h3{
+            font-size: 1.1em;
+            margin: 0.5em 0;
+            font-weight: bold;
+        }
+    }
+    .quiz-category-container{
+        justify-content: space-between;
+    }
+}

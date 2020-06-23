@@ -53,7 +53,7 @@ table {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -98,6 +98,11 @@ a {
 
 .container {
   max-width: 600px;
+}
+
+.index-container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 /*Checkboxes styles*/
@@ -276,6 +281,52 @@ input[type=checkbox]:checked + label {
   background: #9CCC65;
   transition: padding 0.5s;
   padding-left: 3.2em;
+}
+
+.quiz-card-holder {
+  padding: 2rem 0;
+  font-family: "Nunito", sans-serif;
+  justify-content: space-evenly;
+}
+.quiz-card-holder .quiz-card {
+  box-shadow: 3px 2px 12px -1px #948f94;
+  background: whitesmoke;
+  border-radius: 0.4rem;
+  width: 45%;
+}
+.quiz-card-holder .quiz-card h3 {
+  font-size: 1.5rem;
+}
+.quiz-card-holder .quiz-card .quiz-image-holder {
+  width: 30%;
+  font-size: 0;
+  height: 100%;
+}
+.quiz-card-holder .quiz-card img {
+  object-fit: cover;
+  width: 100%;
+}
+.quiz-card-holder .quiz-card .quiz-info-content {
+  flex-direction: column;
+  width: 70%;
+  align-items: flex-start;
+  padding: 1em;
+}
+.quiz-card-holder .quiz-card .btn-take-quiz {
+  background: wheat;
+  padding: 0.4em 0.6em;
+  align-self: flex-end;
+}
+.quiz-card-holder .quiz-category {
+  margin: 2em 0;
+}
+.quiz-card-holder .quiz-category h3 {
+  font-size: 1.1em;
+  margin: 0.5em 0;
+  font-weight: bold;
+}
+.quiz-card-holder .quiz-category-container {
+  justify-content: space-between;
 }
 
 .error-next {

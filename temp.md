@@ -1,4 +1,26 @@
-const quizContainer_DOM = document.querySelector(".quiz-container1");
+<!-- createQuizPageLayout(){
+        this.quizCardHolder_DOM.innerHTML = "";
+        this.quizCardHolder_DOM.innerHTML = `
+            ${this.quizData.map(quizCardData => {
+                return `
+                    <article class="quiz-card flex">
+                        <div class="quiz-image-holder">
+                            <img src=${quizCardData.quizImage} alt="${quizCardData.quizTitle}">
+                        </div>
+                        <div class="quiz-info-content flex">
+                            <h3 class="quiz-title">${quizCardData.quizTitle}</h3>
+                            <p class="quiz-description">${quizCardData.quizDescription}</p>
+                            <button data-id="${quizCardData.quizId}" class="btn btn-take-quiz">Take This Quiz</button>
+                        </div>
+                    </article>
+                `
+            }).join("")}
+        `
+    } -->
+
+<!-- 
+    <!-- index.js with local storage code bug in it
+    const quizContainer_DOM = document.querySelector(".quiz-container1");
 
 class Question{
     constructor(title,options,correctAnswerIndex){
@@ -56,12 +78,13 @@ class Quiz{
         // Instance variables
         this.allQuestions = allQuestions;
 
+        this.quizAppLocalStorageData = JSON.parse(localStorage.getItem("quizAppLocalStorageData"));
       
-        this.selectedOptions = [];
+        this.selectedOptions = this.quizAppLocalStorageData.selectedOptions || [];
         this.incrementBy = incrementBy;
         this.decrementBy = decrementBy;
-        this.activeQuestionIndex =  0;
-        this.score = 0;
+        this.activeQuestionIndex = +this.quizAppLocalStorageData.incompleteQuizId === +this.quizAppLocalStorageData.quizId ? +this.quizAppLocalStorageData["activeQuestionIndex"] : 0;
+        this.score = +this.quizAppLocalStorageData.score || 0;
         this.totalCorrect = 0;
         this.addEventListeners()
     }
@@ -116,6 +139,8 @@ class Quiz{
     createTable(){
        this.quizData_DOM.style.display = "none";
        this.table_DOM.style.display = "block";
+       this.quizAppLocalStorageData = JSON.parse(localStorage.getItem("quizAppLocalStorageData"));
+       console.log(this.quizAppLocalStorageData)
 
        this.tbody_DOM.innerHTML = `
             ${this.allQuestions.map((question,index) => {
@@ -128,10 +153,10 @@ class Quiz{
                             ${question.correctAnswerIndex.map(index => question.options[index]).join(",")}
                         </td>
                         <td class="third">
-                            ${this.selectedOptions[index].map(index => question.options[index]).join(",")}
+                            ${this.quizAppLocalStorageData["selectedOptions"][index].map(index => question.options[index]).join(",")}
                         </td> 
                         <td class="fourth">
-                            ${question.isCorrect(this.selectedOptions[index]) ? `<i class='far fa-check-circle'></i>` : `<i class='far fa-times-circle'></i>`}
+                            ${question.isCorrect(this.quizAppLocalStorageData["selectedOptions"][index]) ? `<i class='far fa-check-circle'></i>` : `<i class='far fa-times-circle'></i>`}
                         </td>
                     </tr>
                 `
@@ -139,10 +164,10 @@ class Quiz{
        `
        this.tbody_DOM.innerHTML += `
             <td class="table-summary" colspan="2">
-                Total Correct : ${this.totalCorrect}
+                Total Correct : ${+this.quizAppLocalStorageData.totalCorrect}
             </td>
             <td class="table-summary" colspan="2">
-                Score : ${this.score}
+                Score : ${+this.quizAppLocalStorageData.score}
             </td>
        `
 
@@ -157,14 +182,15 @@ class Quiz{
     nextQuestion(){
        if(this.activeQuestionIndex < this.allQuestions.length - 1){
         this.activeQuestionIndex++;
-       
+        this.quizAppLocalStorageData["activeQuestionIndex"] = this.activeQuestionIndex;
        
         this.createQuizUI();
        } else {
           //On Reaching the last question, need to create a table.
-
+          delete this.quizAppLocalStorageData.incompleteQuizId;
           this.createTable();
         }
+        localStorage.setItem("quizAppLocalStorageData",JSON.stringify(this.quizAppLocalStorageData))
     }
 
     updateProgressBar(){
@@ -179,11 +205,14 @@ class Quiz{
         } else {
             this.score = this.score - this.decrementBy;
         }
-
+        this.quizAppLocalStorageData["score"] = this.score;
+        this.quizAppLocalStorageData["totalCorrect"] = this.totalCorrect;
     }
 
     addEventListeners(){
-
+        // window.addEventListener("load",(e) => {
+        //     this.createQuizUI();
+        // })
 
         this.nextBtn_DOM.addEventListener("click",(e) => {
             const answer_DOM = this.quizContainer_DOM.querySelectorAll('input[name=option]:checked');
@@ -196,14 +225,18 @@ class Quiz{
            
             //Store the selected options
             this.selectedOptions.push(answers);
+            this.quizAppLocalStorageData["selectedOptions"] = (this.selectedOptions);
+            
             
             const currentQuestion = this.allQuestions[this.activeQuestionIndex];
             
             //Verify whether the answers are right
             const isCorrect = currentQuestion.isCorrect(answers);
             this.updateScore(isCorrect);
+            localStorage.setItem("quizAppLocalStorageData",JSON.stringify(this.quizAppLocalStorageData))
             
             this.nextQuestion();
+            localStorage.setItem("quizAppLocalStorageData",JSON.stringify(this.quizAppLocalStorageData))
             
         })
 
@@ -227,11 +260,15 @@ window.addEventListener("load",() => {
 
     const quizQuestionsData = quizData.find(quiz => quiz.quizId === +quizAppLocalStorageData.quizId);
     
-    
+    //creating pastQuizId to store the quizId that is currently occuring, this is to ensure that 
+    //in case browser is shut and retakes the quiz there the currentQuizId would be set.
+    // if currentQuizId and pastQuizId are one and the same the active index would be starting from where it was left;
+    //Else activeQuestionIndex would be start at 0;
    
 
     
     const quiz = new Quiz(quizContainer_DOM,createQuestionInstances(quizQuestionsData.questions),1,0.25);
-    
+    quizAppLocalStorageData.incompleteQuizId = +quizAppLocalStorageData.quizId;
+    localStorage.setItem("quizAppLocalStorageData",JSON.stringify(quizAppLocalStorageData));
     quiz.createQuizUI();
-})
+}) --> -->

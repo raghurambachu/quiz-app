@@ -329,6 +329,14 @@ input[type=checkbox]:checked + label {
   justify-content: space-between;
 }
 
+footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+footer a {
+  color: #666568;
+}
+
 .error-next {
   flex-direction: column;
   justify-content: center;

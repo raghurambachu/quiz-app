@@ -35,7 +35,7 @@ class Question{
 }
 
 class Quiz{
-    constructor(quizContainer_DOM,allQuestions,incrementBy,decrementBy){
+    constructor(quizContainer_DOM,allQuestions,incrementBy,decrementBy,title){
 
         this.createQuizLayout();
 
@@ -60,6 +60,7 @@ class Quiz{
         this.selectedOptions = [];
         this.incrementBy = incrementBy;
         this.decrementBy = decrementBy;
+        this.title = title;
         this.activeQuestionIndex =  0;
         this.score = 0;
         this.totalCorrect = 0;
@@ -147,7 +148,7 @@ class Quiz{
        `
 
        if(this.score >= 7 ){
-        this.btnShare_DOM.href = `https://twitter.com/intent/tweet/?text=Hey%20I%20scored%20${(this.score / this.allQuestions.length) * 100}%25%20in%20How%20well%20do%20you%20know%20HTML%20elements%3F%20Beginner%20Level%20on%20%40AltCampus.%20Find%20oute%20yours%2C%20take%20th%20quiz%20here.&amp;url=https%3A%2F%2Faltcampus.io%2Fblog%2Fquiz%2Fhtml-elements"`;
+        this.btnShare_DOM.href = `https://twitter.com/intent/tweet/?text=Hey%20I%20scored%20${encodeURIComponent((this.score / this.allQuestions.length) * 100)}%25%20in%20How%20well%20do%20you%20know%20${encodeURIComponent(this.title)}.%20Find%20out%20yours%2C%20take%20the%20quiz%20here&url=${encodeURIComponent("https://tender-lamarr-0b111e.netlify.app/")}`;
         this.btnShare_DOM.style.display = "block";
     } else {
         this.btnShare_DOM.style.display = "none";
@@ -231,7 +232,7 @@ window.addEventListener("load",() => {
    
 
     
-    const quiz = new Quiz(quizContainer_DOM,createQuestionInstances(quizQuestionsData.questions),1,0.25);
+    const quiz = new Quiz(quizContainer_DOM,createQuestionInstances(quizQuestionsData.questions),1,0.25,quizQuestionsData.quizTitle);
     
     quiz.createQuizUI();
 })

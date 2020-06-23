@@ -13,6 +13,13 @@
 // Index page related
 @import "index";
 
+footer{
+    margin-top: 2rem;
+    text-align: center;
+    a{
+        color: rgb(102, 101, 104);
+    }
+}
 
 .error-next{
     flex-direction: column;

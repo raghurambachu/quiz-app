@@ -1,0 +1,16 @@
+@import "reset";
+@import "variables";
+@import "typography";
+@import "general";
+@import "table";
+@import "progress";
+@import "question-container";
+
+
+.error-next{
+    flex-direction: column;
+    justify-content: center;
+    .btn-next{
+        justify-self: flex-end;
+    }
+}

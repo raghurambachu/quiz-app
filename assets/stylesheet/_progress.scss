@@ -1,0 +1,28 @@
+.progress-container{
+    max-width: 600px;
+    margin: 0 auto;
+    .question-number{
+        font-family: $font-family;
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+    progress{
+        width: 100%;
+        
+    }
+    progress[value] {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    
+    progress[value]::-webkit-progress-bar {
+        background-color: lightgrey;
+        height: 0.65rem;
+        border-radius: 0.2rem;
+        width: 100%;
+    }
+    
+    progress[value]::-webkit-progress-value {
+        background-color: $green;
+    }
+}

@@ -1,0 +1,36 @@
+.question-container{
+    font-size: 1.2rem;
+    .title{
+        font-family: $question-font;
+        font-weight: 400;
+    }
+    .options-container{
+        margin-top: 1.25rem;
+    }
+    .form-group{
+        border: 1.8px solid slategray;
+        position: relative;
+        margin: 0.45em;
+        border-radius: 0.25rem;
+    }
+    .checkbox{
+        width: 15%;
+    }
+    .checkbox-label{
+        width: 85%;
+        height: 100%;
+        width: 100%;
+        margin-bottom: 0;
+        padding: 0.8em 1.5em;
+        border-radius: 0.25rem;
+    }
+    label.checkbox-label::before{
+        opacity: 0;
+    }
+    .checkbox:checked + .checkbox-label{
+        background: $green;
+        transition: padding 0.5s;
+        padding-left: 3.2em;
+       
+    }
+}

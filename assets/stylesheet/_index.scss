@@ -44,4 +44,17 @@
     .quiz-category-container{
         justify-content: space-between;
     }
+    @media all and (max-width:900px){
+        .quiz-category,.quiz-category-container{
+            flex-direction: column;
+            
+        }
+        h3{
+            text-align: center;
+        }
+        .quiz-card{
+            margin: 1em 0;
+            width: 90%;
+        }
+    }
 }

@@ -60,4 +60,10 @@
     .table-summary{
         font-weight: bold;
     }
+    @media all and (max-width:900px){
+        font-size: 0.7rem;
+        .btn-retake,.btn-share{
+            top: 105%;
+        }
+    }
 }

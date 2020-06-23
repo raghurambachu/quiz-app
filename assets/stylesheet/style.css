@@ -220,6 +220,14 @@ input[type=checkbox]:checked + label {
 .table-data .table-summary {
   font-weight: bold;
 }
+@media all and (max-width: 900px) {
+  .table-data {
+    font-size: 0.7rem;
+  }
+  .table-data .btn-retake, .table-data .btn-share {
+    top: 105%;
+  }
+}
 
 .progress-container {
   max-width: 600px;
@@ -327,6 +335,18 @@ input[type=checkbox]:checked + label {
 }
 .quiz-card-holder .quiz-category-container {
   justify-content: space-between;
+}
+@media all and (max-width: 900px) {
+  .quiz-card-holder .quiz-category, .quiz-card-holder .quiz-category-container {
+    flex-direction: column;
+  }
+  .quiz-card-holder h3 {
+    text-align: center;
+  }
+  .quiz-card-holder .quiz-card {
+    margin: 1em 0;
+    width: 90%;
+  }
 }
 
 footer {
